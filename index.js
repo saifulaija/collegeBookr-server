@@ -17,8 +17,8 @@ const corsOptions = {
 
 
 
-    
-const { MongoClient, ServerApiVersion } = require('mongodb');
+ 
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster0.pfbgofj.mongodb.net/?retryWrites=true&w=majority`;
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
@@ -35,27 +35,53 @@ async function run() {
     // Connect the client to the server	(optional starting in v4.7)
 //     await client.connect();
 
-   const userCollection = client.db('collegeBookr').collection('users')
+    const collegesCollections = client.db('collegeBookr').collection('colleges');
+    const researchCollections = client.db('collegeBookr').collection('research');
+    const feedbackCollections = client.db('collegeBookr').collection('feedback');
 
 
-//    save the user 
+app.get('/colleges', async(req, res)=>{
+  const result = await collegesCollections.find().toArray();
+  res.send(result)
+})
 
-app.put('/users/:email', async(req, res)=>{
-      const email = req.params.email
-      const user = req.body
-      const query = {email: email}
-      const options = {upsert: true}
-      const updateDoc={
-            $set: user
-      }
+app.get('/research', async(req, res)=>{
+  const result = await researchCollections.find().toArray()
+  res.send(result)
+})
 
-      const result = await userCollection.updateOne(query, updateDoc, options)
-      console.log(result);
-      res.send(result)
+app.get('/feedback', async(req, res)=>{
+  const result = await feedbackCollections.find().toArray()
+  res.send(result)
 })
 
 
 
+app.get("/college/:id", async (req, res) => {
+  const id = req.params.id;
+  const query = { _id: new ObjectId(id) };
+  const result = await collegesCollections.findOne(query);
+  res.send(result);
+});
+
+
+
+
+    
+app.put('/users/:email',async(req, res)=>{
+      const email =req.params.email
+      const user =req.body
+      const query ={email: email}
+      const options ={upsert: true}
+      const updateDoc={
+            $set: user,
+      }
+
+      // const result = await userCollection.updateOne(query, updateDoc, options)
+     const result = await usersCollections.updateOne(query, updateDoc, options)
+      console.log(result);
+      res.send(result)
+})
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
@@ -66,6 +92,8 @@ app.put('/users/:email', async(req, res)=>{
   }
 }
 run().catch(console.dir);
+
+
 
 
 

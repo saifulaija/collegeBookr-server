@@ -1,0 +1,45 @@
+[
+      {
+        "author": "John Doe",
+        "title": "The Impact of Climate Change on Biodiversity",
+        "description": "This research paper explores the effects of climate change on various species and ecosystems around the world.",
+        "websiteLink": "https://www.example.com/paper-1",
+        "imageUrl": "https://i.ibb.co/gJcxw7T/college5.jpghttps://i.ibb.co/Hn73HfS/st1.jpg"
+      },
+      {
+        "author": "Jane Smith",
+        "title": "Artificial Intelligence and its Applications in Healthcare",
+        "description": "This paper discusses the use of artificial intelligence in healthcare for diagnostics and treatment planning.",
+        "websiteLink": "https://www.example.com/paper-2",
+        "imageUrl": "https://i.ibb.co/2Zdbs4N/st2.jpg"
+      },
+      {
+        "author": "Michael Johnson",
+        "title": "The Role of Social Media in Shaping Political Discourse",
+        "description": "This research examines the impact of social media platforms on public opinion and political conversations.",
+        "websiteLink": "https://scholar.google.com/",
+        "imageUrl": "https://i.ibb.co/yXDq4PD/st4.jpg"
+      },
+      {
+        "author": "Emily Brown",
+        "title": "Urbanization and Its Effects on Biodiversity",
+        "description": "This paper analyzes the relationship between urban development and the loss of biodiversity in cities.",
+        "websiteLink": "https://pubmed.ncbi.nlm.nih.gov/",
+        "imageUrl": "https://i.ibb.co/CB196Mg/st5.jpg"
+      },
+      {
+        "author": "David Lee",
+        "title": "The Future of Space Exploration: Challenges and Opportunities",
+        "description": "This research paper discusses the challenges and opportunities in the future of space exploration.",
+        "websiteLink": "https://ieeexplore.ieee.org/",
+        "imageUrl": "https://i.ibb.co/PhYpfSy/st6.jpg"
+      },
+      {
+        "author": "Sophia Garcia",
+        "title": "Ethical Considerations in AI Development",
+        "description": "This paper explores the ethical implications and considerations in the development of artificial intelligence.",
+        "websiteLink": "https://www.jstor.org/",
+        "imageUrl": "https://i.ibb.co/2v6DnSW/wdoctor6.jpg"
+      }
+    ]
+    
