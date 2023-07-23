@@ -38,12 +38,31 @@ async function run() {
     const collegesCollections = client.db('collegeBookr').collection('colleges');
     const researchCollections = client.db('collegeBookr').collection('research');
     const feedbackCollections = client.db('collegeBookr').collection('feedback');
+    const studentsCollections = client.db('collegeBookr').collection('studentsInformation');
 
 
 app.get('/colleges', async(req, res)=>{
   const result = await collegesCollections.find().toArray();
   res.send(result)
 })
+
+
+// search option created
+
+app.get("/colleges/:text", async (req, res) => {
+  const searchText = req.params.text;
+  const result = await collegesCollections
+    .find({
+      $or: [
+        { collegeName: { $regex: searchText, $options: "i" } },
+       
+      ],
+    })
+    
+    .toArray();
+  res.send(result);
+});
+
 
 app.get('/research', async(req, res)=>{
   const result = await researchCollections.find().toArray()
@@ -63,6 +82,47 @@ app.get("/college/:id", async (req, res) => {
   const result = await collegesCollections.findOne(query);
   res.send(result);
 });
+
+
+app.post('/admission', async(req, res)=>{
+  const body = req.body 
+  const result = await studentsCollections.insertOne(body)
+  res.send(result)
+})
+
+app.get('/booked/:email',async(req, res)=>{
+  const email = req.params.email 
+  const query = {email:email} 
+  const result = await studentsCollections.find(query).toArray() 
+  res.send(result)
+})
+
+
+app.get('/students/:id',async(req, res)=>{
+  const id = req.params.id 
+  const query ={ _id: new ObjectId(id)} 
+  const result = await studentsCollections.findOne(query) 
+  res.send(result)
+})
+
+// for feedback
+
+app.put("/feedback/:id",async(req, res) => {
+  const id = req.params.id;
+  const user = req.body;
+  const query = { _id: new ObjectId(id) };
+  const options = { upsert: true };
+  const updateDoc = {
+    $set: user,
+  };
+  const result = await feedbackCollections.updateOne(
+    query,
+    updateDoc,
+    options
+  );
+  res.send(result);
+});
+
 
 
 
